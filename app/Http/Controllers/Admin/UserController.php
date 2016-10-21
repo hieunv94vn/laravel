@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\User;
 use DB;
+use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -17,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = DB::table('users')->get();
+        $user = User::all();
         return view('backend.pages.user.list', compact('user'));
     }
 
@@ -47,7 +48,8 @@ class UserController extends Controller
         $user->password=bcrypt($input['password']);
         $user->save();
 
-        return redirect('them-moi-user');
+        Session::flash('message', 'Successfully created new user!');
+        return Redirect::to('admin/users');
     }
 
     /**

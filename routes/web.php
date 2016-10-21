@@ -17,7 +17,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/danh-sach-user', 'Admin\UserController@index');
-Route::get('/them-moi-user', 'Admin\UserController@create');
-Route::post('/them-moi-user', 'Admin\UserController@store');
-Route::get('/xem-thong-tin/{id}', 'Admin\UserController@show');
+Route::get('/admin/home', function(){
+	return view('backend.pages.home');
+});
+Route::resource('admin/users', 'Admin\UserController');
+Route::resource('admin/categories', 'Admin\CategoryController');
