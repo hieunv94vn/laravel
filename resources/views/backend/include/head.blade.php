@@ -1,4 +1,5 @@
 <head>
+		<link rel="icon" href="https://www.hairlosstalk.com/interact/favicon.png">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
 		<title>@yield('title')</title>

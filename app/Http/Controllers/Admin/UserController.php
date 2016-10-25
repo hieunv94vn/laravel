@@ -4,13 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\User;
-use DB;
+use App\Repositories\Eloquents\UserRepository;
 use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Repositories\Contracts\UserRepositoryInterface;
 
 class UserController extends Controller
-{
+{   
+    protected $userRepository;
+
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +25,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $user = $this->userRepository->allUser();
+        
         return view('backend.pages.user.list', compact('user'));
     }
 
